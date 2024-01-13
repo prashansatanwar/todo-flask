@@ -1,8 +1,10 @@
 from flask import Flask
 from db import init_db
 from api import api
+from flask_cors import CORS
 
 app = Flask(__name__)
+CORS(app)
 
 # Initialize DB
 init_db(app)
