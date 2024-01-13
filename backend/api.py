@@ -1,4 +1,4 @@
-from flask import Flask, Blueprint, jsonify, request
+from flask import Blueprint, jsonify, request
 from db import *
 from datetime import datetime
 
@@ -44,7 +44,7 @@ def editTodo(todoId):
     return jsonify({'message':'TODO updated successfully'})
 
 # Delete Todo
-@api.route('/todos', methods=['DELETE'])
+@api.route('/todos/<string:todoId>', methods=['DELETE'])
 def deleteTodo(todoId):
     result = deleteTodoById(todoId)
     if result:
