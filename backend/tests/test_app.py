@@ -55,6 +55,26 @@ class AppTestCase(unittest.TestCase):
         self.assertEqual(len(data),1)
         self.assertEqual(data[0]['title'],'Test TODO')
     
+    def test_get_todo_by_id(self):
+        # add sample Todo
+        db.todos.insert_one(
+            {
+                'title': 'Test TODO',
+                'description': 'Test Description',
+                'completed': False,
+                'create_date': datetime.now(),
+                'last_updated':datetime.now()
+            }
+        )
+
+        # get todo from DB
+        todos = list(db.todos.find({}))
+        todo = todos[0]
+        
+        # retrieve todo by id
+        response = self.client.get('/api/todos/'+str(todo['_id']))
+        self.assertEqual(response.status_code,200)
+
     def test_update_todo(self):
         # add sample Todo
         db.todos.insert_one(

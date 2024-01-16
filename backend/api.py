@@ -28,7 +28,7 @@ def getAllTodos():
     return jsonify({'message':'TODOs not found'})
 
 # Get Todo by ID
-@api.route('/todos/<string:id>', methods=['GET'])
+@api.route('/todos/<string:todoId>', methods=['GET'])
 def getTodo(todoId):
     todo = readTodoById(todoId)
     if todo:
@@ -46,9 +46,6 @@ def editTodo(todoId):
 # Delete Todo
 @api.route('/todos/<string:todoId>', methods=['DELETE'])
 def deleteTodo(todoId):
-    result = deleteTodoById(todoId)
-    if result:
-        return jsonify({'message':'TODO deleted successfully'})
-    else:
-        return jsonify({'message':'TODO not found'})
+    deleteTodoById(todoId)
+    return jsonify({'message':'TODO deleted successfully'})
 

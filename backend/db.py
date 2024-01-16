@@ -26,7 +26,11 @@ def readAllTodos():
     return todos
 
 def readTodoById(todoId):
-    return todos_collection.find_one({'_id' : ObjectId(todoId)})
+    todo = todos_collection.find_one({'_id' : ObjectId(todoId)})
+    todo['_id'] = str(todo['_id'])
+
+    return todo
+
 
 def addTodo(todo_data):
     todos_collection.insert_one(todo_data)
