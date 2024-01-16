@@ -13,7 +13,7 @@ export function getAllTodos() {
 
 export function getTodoById(todoId) {
     return axios
-            .get(URL+"/todos"+todoId)
+            .get(URL+"/todos/"+todoId)
             .then((res) => res.data)
             .catch((err) => console.log(err));
 }
@@ -38,8 +38,9 @@ export function addNewTodo(data){
 }
 
 export function updateTodo(todoId, updates) {
+    console.log(updates);
     var config = {
-        method: 'patch',
+        method: 'put',
         url:URL+'/todos/'+todoId,
         headers: {
             'Content-Type': 'application/json'
@@ -59,7 +60,7 @@ export function updateTodo(todoId, updates) {
 export function deleteTodo(todoId) {
     var config = {
         method: 'delete',
-        url: URL + '/todos',
+        url: URL + '/todos/'+todoId,
         headers: {
             'Content-Type':'application/json'
         }
